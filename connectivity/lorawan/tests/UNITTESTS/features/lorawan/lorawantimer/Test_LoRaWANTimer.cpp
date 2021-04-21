@@ -71,7 +71,8 @@ TEST_F(Test_LoRaWANTimer, init)
 
 TEST_F(Test_LoRaWANTimer, start)
 {
-    equeue_stub.void_ptr = NULL;
+    int test[1] = {0};
+    equeue_stub.void_ptr = (void *)test;
     timer_event_t ev;
     memset(&ev, 0, sizeof(ev));
     object->start(ev, 10);
