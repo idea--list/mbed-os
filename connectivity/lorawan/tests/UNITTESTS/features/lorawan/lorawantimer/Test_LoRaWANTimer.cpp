@@ -29,6 +29,7 @@ protected:
 
     virtual void SetUp()
     {
+        printf("setup @@@ \n");
         queue = new EventQueue(3, NULL);
         object = new LoRaWANTimeHandler();
         object->activate_timer_subsystem(queue);
@@ -36,6 +37,7 @@ protected:
 
     virtual void TearDown()
     {
+        printf("Teardown @@@ \n");
         delete object;
         delete queue;
     }
@@ -64,18 +66,21 @@ void my_callback()
 
 TEST_F(Test_LoRaWANTimer, init)
 {
+    printf("Init test $$$$ \n");
     timer_event_t ev;
     memset(&ev, 0, sizeof(ev));
     object->init(ev, my_callback);
+    printf("Init end $$$$ \n");
 }
 
 TEST_F(Test_LoRaWANTimer, start)
 {
-    int test[1] = {0};
-    equeue_stub.void_ptr = (void *)test;
+    printf("start test $$$$ \n");
+    equeue_stub.void_ptr = NULL;
     timer_event_t ev;
     memset(&ev, 0, sizeof(ev));
     object->start(ev, 10);
+    printf("start end $$$$ \n");
 }
 
 TEST_F(Test_LoRaWANTimer, stop)

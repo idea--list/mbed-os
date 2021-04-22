@@ -54,7 +54,7 @@ void LoRaWANTimeHandler::init(timer_event_t &obj, mbed::Callback<void()> callbac
 }
 
 void LoRaWANTimeHandler::start(timer_event_t &obj, const uint32_t timeout)
-{
+{    
     obj.timer_id = _queue->call_in(milliseconds(timeout), obj.callback);
     MBED_ASSERT(obj.timer_id != 0);
 }
